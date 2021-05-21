@@ -8,7 +8,7 @@ namespace MayoSolutions.Media.MediaData.TV
     /// A TV series.
     /// </summary>
     [DebuggerDisplay("{SeriesIdentifier.Name,nq} ({Year?.ToString()??\"?\",nq})")]
-    public class Series :  ISeriesDescriptor, IMediaInfo, IMediaExtendedInfo
+    public class Series : ISeriesIdentifier, ISeriesDescriptor, IMediaInfo, IMediaExtendedInfo
     {
         private IMediaInfo _mediaInfoImplementation = new MediaInfo();
         private IMediaExtendedInfo _mediaExtendedInfoImplementation = new MediaExtendedInfo();

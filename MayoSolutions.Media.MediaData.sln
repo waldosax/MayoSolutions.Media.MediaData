@@ -7,7 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{0D32701B-7CB
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3DE0E801-49F9-42C6-BD24-0B65C6804B45}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MayoSolutions.Media.MediaData", "src\MayoSolutions.Media.MediaData\MayoSolutions.Media.MediaData.csproj", "{BBD0BAB8-6889-4B79-85AC-F96522DC9486}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MayoSolutions.Media.MediaData", "src\MayoSolutions.Media.MediaData\MayoSolutions.Media.MediaData.csproj", "{BBD0BAB8-6889-4B79-85AC-F96522DC9486}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb", "src\MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb\MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.csproj", "{29F1044E-8B03-4495-8060-D7C1BB81E077}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MayoSolutions.Media.MediaData.Aggregators.Movies.TheMovieDb", "src\MayoSolutions.Media.MediaData.Aggregators.Movies.TheMovieDb\MayoSolutions.Media.MediaData.Aggregators.Movies.TheMovieDb.csproj", "{A501C4F6-7D8E-422D-BB31-20499E8412EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,12 +23,22 @@ Global
 		{BBD0BAB8-6889-4B79-85AC-F96522DC9486}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BBD0BAB8-6889-4B79-85AC-F96522DC9486}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BBD0BAB8-6889-4B79-85AC-F96522DC9486}.Release|Any CPU.Build.0 = Release|Any CPU
+		{29F1044E-8B03-4495-8060-D7C1BB81E077}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{29F1044E-8B03-4495-8060-D7C1BB81E077}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{29F1044E-8B03-4495-8060-D7C1BB81E077}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{29F1044E-8B03-4495-8060-D7C1BB81E077}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A501C4F6-7D8E-422D-BB31-20499E8412EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A501C4F6-7D8E-422D-BB31-20499E8412EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A501C4F6-7D8E-422D-BB31-20499E8412EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A501C4F6-7D8E-422D-BB31-20499E8412EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{BBD0BAB8-6889-4B79-85AC-F96522DC9486} = {0D32701B-7CB6-4B86-82A8-1B02BB87A4D7}
+		{29F1044E-8B03-4495-8060-D7C1BB81E077} = {0D32701B-7CB6-4B86-82A8-1B02BB87A4D7}
+		{A501C4F6-7D8E-422D-BB31-20499E8412EA} = {0D32701B-7CB6-4B86-82A8-1B02BB87A4D7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7BFB7A6A-6C30-4DE0-B795-629F5B329AD0}

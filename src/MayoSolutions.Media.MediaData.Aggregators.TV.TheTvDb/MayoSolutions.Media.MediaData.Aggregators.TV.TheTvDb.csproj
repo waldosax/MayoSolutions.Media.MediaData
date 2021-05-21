@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<Project Sdk="Microsoft.NET.Sdk">
+
+		<PropertyGroup>
+			<TargetFrameworks>net472;netstandard2.1;netcoreapp2.1;net5.0</TargetFrameworks>
+			<AssemblyName>MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb</AssemblyName>
+			<RootNamespace>MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb</RootNamespace>
+			<Company>Mayo Solutions</Company>
+			<Authors>Rob Mayo</Authors>
+			<RepositoryType>Git</RepositoryType>
+			<Platforms>AnyCPU</Platforms>
+			<Version>0.0.1</Version>
+		</PropertyGroup>
+
+		<ItemGroup>
+			<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		</ItemGroup>
+
+		<ItemGroup>
+			<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" PrivateAssets="All" Version="1.0.0-preview.2" />
+		</ItemGroup>
+
+	</Project>
+
+</Project>
