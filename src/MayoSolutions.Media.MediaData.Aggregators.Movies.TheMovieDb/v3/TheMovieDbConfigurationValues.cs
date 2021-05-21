@@ -8,16 +8,7 @@ namespace MayoSolutions.Media.MediaData.Aggregators.Movies.TheMovieDb.v3
 
         public string ApiBaseUrl => _configurationValues.GetConfigValue("TheMovieDb.v3.ApiBaseUrl");
         public string ApiKey => _configurationValues.GetConfigValue("TheMovieDb.v3.ApiKey");
-
-        public int AuthTokenCacheDurationInHours
-        {
-            get
-            {
-                string cacheDurationString = _configurationValues.GetConfigValue("TheMovieDb.v3.AuthTokenCacheDuration");
-                if (int.TryParse(cacheDurationString, out int cacheDuration)) return cacheDuration;
-                return 24;
-            }
-        }
+        public string ArtworkBaseUrl => _configurationValues.GetConfigValue("TheMovieDb.v3.ArtworkBaseUrl");
 
         public TheMovieDbConfigurationValues(IConfigurationValues configurationValues)
         {

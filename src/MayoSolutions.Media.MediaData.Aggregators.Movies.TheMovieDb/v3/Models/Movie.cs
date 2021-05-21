@@ -8,7 +8,7 @@ namespace MayoSolutions.Media.MediaData.Aggregators.Movies.TheMovieDb.v3.Models
         public bool Adult { get; set; }
 
         [JsonProperty("backdrop_path")]
-        public bool BackdropPath { get; set; }
+        public string BackdropPath { get; set; }
 
         [JsonProperty("belongs_to_collection")]
         public object BelongsToCollection { get; set; }

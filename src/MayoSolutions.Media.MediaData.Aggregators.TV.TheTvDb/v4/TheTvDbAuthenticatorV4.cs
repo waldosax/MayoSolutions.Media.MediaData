@@ -5,8 +5,7 @@ using System.Threading.Tasks;
 using MayoSolutions.Framework;
 using MayoSolutions.Framework.Web;
 using MayoSolutions.Media.MediaData.Aggregators.Configuration;
-using MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v2;
-using MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v2.Models;
+using MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v4.Models;
 using Newtonsoft.Json;
 
 namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v4
@@ -16,7 +15,7 @@ namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v4
         private const string PersistentAuthTokenFileName = "thetvdb.com.authtoken.v4.json";
 
         private readonly IDateTimeProvider _dateTimeProvider;
-        private readonly ITheTvDbConfigurationValues _configurationValues;
+        private readonly ITheTvDbConfigurationValuesV4 _configurationValues;
         private readonly ILocalPaths _localPaths;
         private readonly ITheTvDbApiDownloaderV4 _apiDownloader;
 
@@ -26,7 +25,7 @@ namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v4
 
         public TheTvDbAuthenticatorV4(
             IDateTimeProvider dateTimeProvider,
-            ITheTvDbConfigurationValues configurationValues,
+            ITheTvDbConfigurationValuesV4 configurationValues,
             ILocalPaths localPaths,
             ITheTvDbApiDownloaderV4 apiDownloader
             )

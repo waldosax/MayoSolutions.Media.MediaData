@@ -1,4 +1,5 @@
-﻿using MayoSolutions.Media.MediaData.Aggregators.Configuration;
+﻿using MayoSolutions.Common.Extensions;
+using MayoSolutions.Media.MediaData.Aggregators.Configuration;
 
 namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v4
 {
@@ -10,15 +11,9 @@ namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v4
         public string ApiKey => _configurationValues.GetConfigValue("TheTvDb.v4.ApiKey");
         public string ApiPin => _configurationValues.GetConfigValue("TheTvDb.v4.Pin");
 
-        public int AuthTokenCacheDurationInHours
-        {
-            get
-            {
-                string cacheDurationString = _configurationValues.GetConfigValue("TheTvDb.v4.AuthTokenCacheDuration");
-                if (int.TryParse(cacheDurationString, out int cacheDuration)) return cacheDuration;
-                return 24;
-            }
-        }
+        public int AuthTokenCacheDurationInHours =>
+            _configurationValues.GetConfigValue("TheTvDb.v4.AuthTokenCacheDuration")
+                .ToNullableInteger() ?? 24;
 
         public TheTvDbConfigurationValuesV4(IConfigurationValues configurationValues)
         {

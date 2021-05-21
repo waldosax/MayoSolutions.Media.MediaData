@@ -4,6 +4,6 @@
     {
         string ApiBaseUrl { get; }
         string ApiKey { get; }
-        int AuthTokenCacheDurationInHours { get; }
+        string ArtworkBaseUrl { get; }
     }
 }

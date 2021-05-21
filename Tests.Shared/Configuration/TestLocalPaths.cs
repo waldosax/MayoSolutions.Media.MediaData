@@ -1,0 +1,17 @@
+﻿using System;
+using System.IO;
+using MayoSolutions.Media.MediaData.Aggregators.Configuration;
+
+namespace Tests.Shared.Configuration
+{
+    public class TestLocalPaths : ILocalPaths
+    {
+        private const string AppName = "MayoSolutions.Media.MediaData";
+
+        private string _applicationDataPath;
+
+        public string ApplicationDataPath => _applicationDataPath ??= Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData), AppName);
+
+
+    }
+}
