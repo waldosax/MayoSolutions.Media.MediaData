@@ -12,7 +12,7 @@ namespace MayoSolutions.Media.MediaData.TV
     {
         /// <summary>Series containing the season.</summary>
         [JsonIgnore]
-        public Series Series { get; internal set; }
+        public Series Series { get; set; }
 
         /// <summary>Season Number.</summary>
         /// <remarks>Season 0 indicates Specials/pre-season episodes.</remarks>

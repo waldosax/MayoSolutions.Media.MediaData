@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Diagnostics;
 using Newtonsoft.Json;
 
@@ -13,11 +14,11 @@ namespace MayoSolutions.Media.MediaData.TV
     {
         /// <summary>Series containing this episode.</summary>
         [JsonIgnore]
-        public Series Series { get; internal set; }
+        public Series Series { get; set; }
 
         /// <summary>Season containing this episode.</summary>
         [JsonIgnore]
-        public Season Season { get; internal set; }
+        public Season Season { get; set; }
 
         /// <summary>Episode number within the season.</summary>
         public int EpisodeNumber { get; set; }
@@ -32,8 +33,9 @@ namespace MayoSolutions.Media.MediaData.TV
         /// <summary>Episode description.</summary>
         public string Description { get; set; }
 
+        [EditorBrowsable(EditorBrowsableState.Never)]
         [JsonIgnore]
-        internal Dictionary<string, object> AdditionalData { get; set; }
+        public Dictionary<string, object> AdditionalData { get; set; }
 
         /// <summary>Unique episode identifier.</summary>
         [JsonIgnore]
