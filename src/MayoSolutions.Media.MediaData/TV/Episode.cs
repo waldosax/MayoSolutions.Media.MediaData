@@ -10,7 +10,7 @@ namespace MayoSolutions.Media.MediaData.TV
     /// TV Episode
     /// </summary>
     [DebuggerDisplay("{EpisodeNumber.ToString(\"00\"),nq} - {" + nameof(Title) + ",nq}")]
-    public class Episode
+    public class Episode : IHasAirDate
     {
         /// <summary>Series containing this episode.</summary>
         [JsonIgnore]

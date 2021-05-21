@@ -233,7 +233,7 @@ namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v4
                 ImdbId = input.RemoteIds?.FirstOrDefault(x => x.Type == RemoteIdType.IMDB)?.Id,
                 Description = input.Translations?.OverviewTranslations?.FirstOrDefault(x => x.Language == "eng")?.Overview,
                 Year = input.FirstAired.ToTvDbDate()?.Year,
-                AirDate = input.FirstAired.ToTvDbDate(),
+                ReleaseDate = input.FirstAired.ToTvDbDate(),
                 Genres = input.Genres?.Select(x => x.Name)?.ToArray(),
                 Networks = input.Networks?.Select(x => x.Name)?.Concat(
                           input.Companies?.Where(x => x.CompanyType.Id == CompanyType.Network).Select(x => x.Name)).Distinct(StringComparer.OrdinalIgnoreCase).ToArray(),

@@ -6,15 +6,15 @@ namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v4
     {
         private readonly IConfigurationValues _configurationValues;
 
-        public string ApiBaseUrl => _configurationValues.GetConfigValue("TheTvDb.ApiBaseUrl");
-        public string ApiKey => _configurationValues.GetConfigValue("TheTvDb.ApiKey");
-        public string ApiPin => _configurationValues.GetConfigValue("TheTvDb.ApiPin");
+        public string ApiBaseUrl => _configurationValues.GetConfigValue("TheTvDb.v4.ApiBaseUrl");
+        public string ApiKey => _configurationValues.GetConfigValue("TheTvDb.v4.ApiKey");
+        public string ApiPin => _configurationValues.GetConfigValue("TheTvDb.v4.Pin");
 
         public int AuthTokenCacheDurationInHours
         {
             get
             {
-                string cacheDurationString = _configurationValues.GetConfigValue("TheTvDb.AuthTokenCacheDuration");
+                string cacheDurationString = _configurationValues.GetConfigValue("TheTvDb.v4.AuthTokenCacheDuration");
                 if (int.TryParse(cacheDurationString, out int cacheDuration)) return cacheDuration;
                 return 24;
             }

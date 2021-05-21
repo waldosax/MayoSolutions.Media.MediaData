@@ -182,7 +182,7 @@ namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v2
                 Name = input.SeriesName,
                 Id = input.SeriesId,
                 ImdbId = input.ImdbId,
-                AirDate = input.AirDate,
+                ReleaseDate = input.AirDate,
                 Genres = input.Genre,
                 Networks = new []{ input.Network },
                 Status = input.Status,

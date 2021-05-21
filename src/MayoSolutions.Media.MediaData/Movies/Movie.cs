@@ -1,83 +1,85 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace MayoSolutions.Media.MediaData.Movies
 {
-    public class Movie: IMediaInfo, IMediaExtendedInfo
+    [DebuggerDisplay("{Name,nq} ({Year?.ToString()??\"?\",nq})")]
+    public class Movie : IMovieIdentifier, IMovieDescriptor, IMediaInfo, IMediaExtendedInfo, IHasReleaseDate
     {
-        private IMediaInfo _mediaInfoImplementation = new MediaInfo();
-        private IMediaExtendedInfo _mediaExtendedInfoImplementation = new MediaExtendedInfo();
+        private readonly IMediaInfo _mediaInfo = new MediaInfo();
+        private readonly IMediaExtendedInfo _mediaExtendedInfo = new MediaExtendedInfo();
+        private DateTime? _releaseDate;
+
 
         #region IMediaInfo
 
         public string Id
         {
-            get => _mediaInfoImplementation.Id;
-            set => _mediaInfoImplementation.Id = value;
+            get => _mediaInfo.Id;
+            set => _mediaInfo.Id = value;
         }
 
         public string Name
         {
-            get => _mediaInfoImplementation.Name;
-            set => _mediaInfoImplementation.Name = value;
+            get => _mediaInfo.Name;
+            set => _mediaInfo.Name = value;
         }
 
         public int? Year
         {
-            get => _mediaInfoImplementation.Year;
-            set => _mediaInfoImplementation.Year = value;
+            get => _mediaInfo.Year;
+            set => _mediaInfo.Year = value;
         }
 
         public string Description
         {
-            get => _mediaInfoImplementation.Description;
-            set => _mediaInfoImplementation.Description = value;
+            get => _mediaInfo.Description;
+            set => _mediaInfo.Description = value;
         }
 
         public string ImdbId
         {
-            get => _mediaInfoImplementation.ImdbId;
-            set => _mediaInfoImplementation.ImdbId = value;
+            get => _mediaInfo.ImdbId;
+            set => _mediaInfo.ImdbId = value;
         }
 
         #endregion
 
         #region IMediaExtendedInfo
 
-        public DateTime? AirDate
-        {
-            get => _mediaExtendedInfoImplementation.AirDate;
-            set
-            {
-                Year = value == null ? (int?)null : value.Value.Year;
-                _mediaExtendedInfoImplementation.AirDate = value;
-            }
-        }
-
         public string[] Genres
         {
-            get => _mediaExtendedInfoImplementation.Genres;
-            set => _mediaExtendedInfoImplementation.Genres = value;
+            get => _mediaExtendedInfo.Genres;
+            set => _mediaExtendedInfo.Genres = value;
         }
 
         public string[] Networks
         {
-            get => _mediaExtendedInfoImplementation.Networks;
-            set => _mediaExtendedInfoImplementation.Networks = value;
+            get => _mediaExtendedInfo.Networks;
+            set => _mediaExtendedInfo.Networks = value;
         }
-
-        [Obsolete("Use Networks property.", false)]
-        public string Network
-        {
-            get => _mediaExtendedInfoImplementation.Network;
-            set => _mediaExtendedInfoImplementation.Network = value;
-        }
-
+        
         public string Status
         {
-            get => _mediaExtendedInfoImplementation.Status;
-            set => _mediaExtendedInfoImplementation.Status = value;
+            get => _mediaExtendedInfo.Status;
+            set => _mediaExtendedInfo.Status = value;
         }
 
         #endregion
+
+        #region IHasReleaseDate
+
+        public DateTime? ReleaseDate
+        {
+            get => _releaseDate;
+            set
+            {
+                if (Year == null) Year = value?.Year;
+                _releaseDate = value;
+            }
+        }
+
+        #endregion
+
     }
 }

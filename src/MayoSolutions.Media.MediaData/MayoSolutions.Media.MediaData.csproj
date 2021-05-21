@@ -22,8 +22,4 @@
 		<PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" PrivateAssets="All" Version="1.0.0-preview.2" />
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="Aggregators\Movies\" />
-	</ItemGroup>
-
 </Project>
