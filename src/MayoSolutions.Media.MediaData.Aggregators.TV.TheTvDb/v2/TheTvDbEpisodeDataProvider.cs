@@ -180,7 +180,7 @@ namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v2
             output = new Series
             {
                 Name = input.SeriesName,
-                Id = input.SeriesId,
+                Id = input.Id.ToString(),
                 ImdbId = input.ImdbId,
                 ReleaseDate = input.AirDate,
                 Genres = input.Genre,
