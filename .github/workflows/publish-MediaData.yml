@@ -5,7 +5,7 @@ on:
       - master # Default release branch
 jobs:
   publish:
-    name: build, pack & publish
+    name: Build, pack & publish
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -16,7 +16,7 @@ jobs:
           dotnet-version: 5.0.203
 
       # Publish
-      - name: publish on version change
+      - name: Publish on version change
         id: publish_nuget
         uses: rohith/publish-nuget@v2.5.5
         with:
