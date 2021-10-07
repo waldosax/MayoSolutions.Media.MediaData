@@ -137,7 +137,7 @@ namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v4
                     x => x.Id,
                     x => _apiDownloader.GetEpisodeTranslationAsync(x.Id, "eng", authToken, proxy
                     ));
-            await Task.WhenAll(seasonsTasks.Values.ToArray());
+            await Task.WhenAll(episodesTasks.Values.ToArray());
             var overviews = episodesTasks.ToDictionary(
                 x => x.Key,
                 x => Deserialize<Translation>(x.Value.Result).Data
