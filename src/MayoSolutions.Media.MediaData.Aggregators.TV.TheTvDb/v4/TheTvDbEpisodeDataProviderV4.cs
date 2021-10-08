@@ -60,7 +60,7 @@ namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v4
                     x,
                     Deserialize<SeriesExtendedRecord>(imagesTasks[x.TheTvDbId]?.Result)?.Data))
                 .ToList();
-            return seriesResults?.ToArray() ?? new Series[0];
+            return seriesResults?.ToArray() ?? Array.Empty<Series>();
         }
 
 
@@ -73,77 +73,44 @@ namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v4
             var series = await GetAllEpisodesInfo(seriesIdentifier, authToken, proxy);
             return series;
         }
+        
 
         private async Task<Series> GetAllEpisodesInfo(ISeriesIdentifier seriesIdentifier, string authToken,
             IWebProxy proxy)
         {
             // I will hate TheTvDb forever for how they make you get episodes now.
 
+            string seriesJson = await _apiDownloader.GetEpisodesAsync(seriesIdentifier, "official", "eng", authToken, proxy);
+            var theTvDbSeries = Deserialize<SeriesExtendedEpisodesRecord>(seriesJson);
 
-            // Step 1. Query the extended details of a series
-            string seriesJson = await _apiDownloader.GetSeriesExtendedAsync(seriesIdentifier, authToken, proxy);
-            var theTvDbSeries = Deserialize<SeriesExtendedRecord>(seriesJson);
-
-
-            // Step 2. Extract all the Aired Order seasons
-            var allSeasons = theTvDbSeries.Data.Seasons
-                .Where(x => x.Type.Name == "Aired Order")
-                .OrderBy(x => x.Number)
+            var seasons = theTvDbSeries.Data.Seasons
+                .Where(s => s.Type?.Type == "official")
+                .OrderBy(s => s.Number)
                 .ToList();
 
-
-            // Step 3. For each season, query the season individually to get episodes
-            var seasonsTasks = allSeasons.ToDictionary(
-                x => x.Number,
-                x => _apiDownloader.GetSeasonExtendedAsync(x.Id, authToken, proxy
-                ));
-            await Task.WhenAll(seasonsTasks.Values.ToArray());
-
-            var theTvDbEpisodes = seasonsTasks
+            // Remove any episodes which have multiple entries for season number and episode number
+            var dedupedEpisodes = theTvDbSeries.Data.Episodes
+                .GroupBy(ep => new {ep.SeasonNumber, ep.Number}, ep => ep)
+                .Select(g => g.First())
+                .GroupBy(ep => ep.SeasonNumber ?? 0L, ep => ep)
+                .OrderBy(s => s.Key)
                 .ToDictionary(
-                    x => x.Key,
-                    x => Deserialize<SeasonExtendedRecord>(x.Value?.Result).Data.Episodes
-                        .Where(y => y.SeasonNumber == x.Key) // Linting bad information
-                        .ToList()
-                );
+                    g => g.Key,
+                    g => g.OrderBy(ep => ep.Number).ToList());
 
-            // De-dupe episodes
-            var dedupedEpisodes = theTvDbEpisodes
-                .ToDictionary(
-                    kvp => kvp.Key,
-                    kvp => kvp.Value.GroupBy(
-                        x => x.Id,
-                        x => x
-                        )
-                        .Select(x => x.First())
-                        .OrderBy(x => x.Number)
-                        .ToList()
-                    );
-
-            // Remove any seasons without episodes
-            var seasonNumbersToRemove = dedupedEpisodes
-                .Where(kvp => kvp.Value.Count == 0)
-                .Select(kvp => kvp.Key)
-                .ToArray();
-            foreach (var seasonNumber in seasonNumbersToRemove)
+            // Remove seasons with no episodes
+            for (int i = seasons.Count - 1; i >= 0; i--)
             {
-                dedupedEpisodes.Remove(seasonNumber);
-                allSeasons.RemoveAt(allSeasons.FindIndex(x => x.Number == seasonNumber));
+                var seasonNumber = seasons[i].Number;
+                if (!dedupedEpisodes.ContainsKey(seasonNumber) || dedupedEpisodes[seasonNumber].Count == 0)
+                    seasons.RemoveAt(i);
             }
 
-            // Step 4. For each episode, query the translations individually to get descriptions
-            var episodesTasks = dedupedEpisodes.SelectMany(kvp => kvp.Value)
-                .ToDictionary(
-                    x => x.Id,
-                    x => _apiDownloader.GetEpisodeTranslationAsync(x.Id, "eng", authToken, proxy
-                    ));
-            await Task.WhenAll(episodesTasks.Values.ToArray());
-            var overviews = episodesTasks.ToDictionary(
-                x => x.Key,
-                x => Deserialize<Translation>(x.Value.Result).Data
-            );
+            var series = Adapt(theTvDbSeries.Data,
+                seasons,
+                dedupedEpisodes,
+                (Dictionary<long, Translation>)null);
 
-            var series = Adapt(theTvDbSeries.Data, allSeasons, dedupedEpisodes, overviews);
             return series;
         }
 
@@ -240,8 +207,8 @@ namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v4
                 Status = input.Status?.Name
             };
         }
-        
-        
+
+
 
         private void Adapt(SeriesExtendedRecord theTvDbSeries, out SeriesImageUrls output)
         {
@@ -301,11 +268,12 @@ namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v4
                             Season = season,
                             EpisodeNumber = (int)theTvDbEpisode.Number,
                             Title = theTvDbEpisode.Name,
+                            Description = theTvDbEpisode.Overview,
                             AirDate = theTvDbEpisode.Aired.ToTvDbDate(),
                             AdditionalData = new Dictionary<string, object>(StringComparer.OrdinalIgnoreCase)
                         };
                         JsonConvert.PopulateObject(JsonConvert.SerializeObject(theTvDbEpisode), episode.AdditionalData);
-                        if (overviews.ContainsKey(theTvDbEpisode.Id))
+                        if (string.IsNullOrEmpty(episode.Description) && overviews?.ContainsKey(theTvDbEpisode.Id) == true)
                             episode.Description = overviews[theTvDbEpisode.Id].Overview;
                         season.Episodes.Add(episode);
 

@@ -12,6 +12,8 @@ namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v4
 
         Task<string> GetSeriesExtendedAsync(ISeriesIdentifier seriesIdentifier, string authToken, IWebProxy proxy);
 
+        Task<string> GetEpisodesAsync(ISeriesIdentifier seriesIdentifier, string seasonType, string language, string authToken, IWebProxy proxy);
+
         Task<string> GetSeasonExtendedAsync(long seasonId, string authToken, IWebProxy proxy);
 
         Task<string> GetEpisodeTranslationAsync(long episodeId, string language, string authToken, IWebProxy proxy);

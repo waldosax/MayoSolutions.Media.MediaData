@@ -14,6 +14,7 @@ using NUnit.Framework;
 using NUnit.Framework.Constraints;
 using Tests.Shared.Configuration;
 using Tests.Shared.TheTvDb;
+using TheTvDb.BenchTests.v4;
 using V2 = MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v2;
 using V4 = MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v4;
 
@@ -96,6 +97,8 @@ namespace MayoSolutions.NameMyTvSeries.Core.BenchTests.Aggregators.TheTvDb.v4
             var v2Series = await v2DataProvider.GetEpisodesAsync(seriesIdentifier, null);
             var v4Series = await v4DataProvider.GetEpisodesAsync(seriesIdentifier, null);
 
+            ParityDump.Dump(v2Series, v4Series, Console.Out);
+
             Assert.That(v2Series, Is.Not.Null, "Expected v2 series to be not null.");
             Assert.That(v4Series, Is.Not.Null, "Expected v4 series to be not null.");
 
@@ -134,8 +137,6 @@ namespace MayoSolutions.NameMyTvSeries.Core.BenchTests.Aggregators.TheTvDb.v4
             }
 
         }
-
-
 
         // TODO: Extract to constraints
         private static bool IsCloseEnough(string actual, string expected, decimal tolerance = 0.01m)

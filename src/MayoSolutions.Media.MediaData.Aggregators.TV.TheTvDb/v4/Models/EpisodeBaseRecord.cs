@@ -14,6 +14,7 @@ namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v4.Models
         public string Name { get; set; }
         public List<string> NameTranslations { get; set; }
         public long Number { get; set; }
+        public string Overview { get; set; }
         public List<string> OverviewTranslations { get; set; }
         public long? Runtime { get; set; }
         public long? SeasonNumber { get; set; }

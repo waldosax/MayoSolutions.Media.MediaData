@@ -20,6 +20,9 @@ namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v4
 
             public const string GetSeason = "/seasons/{0}/extended";
 
+            //public const string GetEpisodes = "/series/{id}/episodes/{season-type}/{lang}";
+            public const string GetEpisodes = "/series/{0}/episodes/{1}/{2}";
+            
             public const string GetEpisodeTranslation = "/episodes/{0}/translations/{1}";
         }
 
@@ -91,6 +94,20 @@ namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v4
         {
             string baseUrl = _configurationValues.ApiBaseUrl;
             string url = baseUrl + string.Format(Endpoints.GetSeries, seriesIdentifier.Id);
+
+            string json = await _httpDownloader.GetStringAsync(url,
+                new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+                {
+                    {"Authorization", $"Bearer {authToken}"}
+                },
+                proxy);
+            return json;
+        }
+
+        public async Task<string> GetEpisodesAsync(ISeriesIdentifier seriesIdentifier, string seasonType, string language, string authToken, IWebProxy proxy)
+        {
+            string baseUrl = _configurationValues.ApiBaseUrl;
+            string url = baseUrl + string.Format(Endpoints.GetEpisodes, seriesIdentifier.Id, seasonType, language);
 
             string json = await _httpDownloader.GetStringAsync(url,
                 new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)

@@ -159,7 +159,9 @@ namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v2
         private IEnumerable<Season> Adapt(IEnumerable<TheTvDbEpisode> theTvDbEpisodes)
         {
             List<Season> seasons = new List<Season>();
-            var groupedBySeasonNumber = theTvDbEpisodes.GroupBy(x => x.AiredSeason).OrderBy(x => x.Key);
+            var groupedBySeasonNumber = theTvDbEpisodes
+                .GroupBy(x => x.AiredSeason)
+                .OrderBy(x => x.Key);
             foreach (var episodesInSeason in groupedBySeasonNumber)
             {
                 Adapt(episodesInSeason.First(), out Season season);
