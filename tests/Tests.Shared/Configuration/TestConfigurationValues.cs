@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using MayoSolutions.Media.MediaData.Aggregators.Configuration;
+using MayoSolutions.Framework.Configuration;
 
 namespace Tests.Shared.Configuration
 {
@@ -8,7 +8,7 @@ namespace Tests.Shared.Configuration
     {
         private Dictionary<string, string> _values = new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
         {
-            { "TheTvDb.ApiBaseUrl", "https://api.thetvdb.com"},
+            {"TheTvDb.ApiBaseUrl", "https://api.thetvdb.com"},
             {"TheTvDb.ApiKey", "9e717ffe7f88a75466153ee5f714ef5a"},
             {"TheTvDb.AuthTokenCacheDuration", "24"},
             {"TheTvDb.ArtworkBaseUrl", "https://artworks.thetvdb.com/banners"},

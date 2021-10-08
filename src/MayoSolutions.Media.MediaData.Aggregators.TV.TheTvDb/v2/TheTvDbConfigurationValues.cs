@@ -1,4 +1,4 @@
-﻿using MayoSolutions.Media.MediaData.Aggregators.Configuration;
+﻿using MayoSolutions.Framework.Configuration;
 
 namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v2
 {

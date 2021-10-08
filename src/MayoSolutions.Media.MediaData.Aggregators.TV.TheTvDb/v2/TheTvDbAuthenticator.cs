@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
 using MayoSolutions.Framework;
+using MayoSolutions.Framework.Configuration;
 using MayoSolutions.Framework.Web;
-using MayoSolutions.Media.MediaData.Aggregators.Configuration;
 using MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v2.Models;
 using Newtonsoft.Json;
 
@@ -26,13 +26,13 @@ namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v2
         public TheTvDbAuthenticator(
             IDateTimeProvider dateTimeProvider,
             ITheTvDbConfigurationValues configurationValues,
-            ILocalPaths _localPaths,
+            ILocalPaths localPaths,
             ITheTvDbApiDownloader apiDownloader
             )
         {
             _dateTimeProvider = dateTimeProvider;
             _configurationValues = configurationValues;
-            this._localPaths = _localPaths;
+            _localPaths = localPaths;
             _apiDownloader = apiDownloader;
         }
 

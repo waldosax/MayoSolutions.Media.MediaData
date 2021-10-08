@@ -1,6 +1,6 @@
 ﻿using System;
 using System.IO;
-using MayoSolutions.Media.MediaData.Aggregators.Configuration;
+using MayoSolutions.Framework.Configuration;
 
 namespace Tests.Shared.Configuration
 {

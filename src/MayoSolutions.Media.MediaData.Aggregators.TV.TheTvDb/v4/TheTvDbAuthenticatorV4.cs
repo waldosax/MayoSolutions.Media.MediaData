@@ -4,7 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using MayoSolutions.Framework;
 using MayoSolutions.Framework.Web;
-using MayoSolutions.Media.MediaData.Aggregators.Configuration;
+using MayoSolutions.Framework.Configuration;
 using MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v4.Models;
 using Newtonsoft.Json;
 
