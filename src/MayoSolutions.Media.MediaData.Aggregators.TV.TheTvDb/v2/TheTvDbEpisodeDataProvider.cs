@@ -10,7 +10,7 @@ using Newtonsoft.Json;
 namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v2
 {
     [Aggregator("TheTVDB.com (Legacy V2)")]
-    public class TheTvDbEpisodeDataProvider : IAggregator
+    public class TheTvDbEpisodeDataProvider : ITvAggregator
     {
         private const int MaxSearchResults = 10;
         private const int MaxImageResults = 5;
