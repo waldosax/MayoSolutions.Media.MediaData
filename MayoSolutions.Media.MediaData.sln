@@ -9,7 +9,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{3DE0E801
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MayoSolutions.Media.MediaData", "src\MayoSolutions.Media.MediaData\MayoSolutions.Media.MediaData.csproj", "{BBD0BAB8-6889-4B79-85AC-F96522DC9486}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb", "src\MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb\MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.csproj", "{29F1044E-8B03-4495-8060-D7C1BB81E077}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb", "src\MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb\MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.csproj", "{29F1044E-8B03-4495-8060-D7C1BB81E077}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MayoSolutions.Media.MediaData.Aggregators.Movies.TheMovieDb", "src\MayoSolutions.Media.MediaData.Aggregators.Movies.TheMovieDb\MayoSolutions.Media.MediaData.Aggregators.Movies.TheMovieDb.csproj", "{A501C4F6-7D8E-422D-BB31-20499E8412EA}"
 EndProject
@@ -17,13 +17,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BenchTests", "BenchTests", 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "UnitTests", "UnitTests", "{7B3159A6-ACCA-4AD9-8957-FCEB1EB05743}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheTvDb.BenchTests", "tests\TheTvDb.BenchTests\TheTvDb.BenchTests.csproj", "{C33F2F3F-102C-4A50-8C54-C4727190E161}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheTvDb.BenchTests", "tests\TheTvDb.BenchTests\TheTvDb.BenchTests.csproj", "{C33F2F3F-102C-4A50-8C54-C4727190E161}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "shared", "shared", "{B12981C3-9756-4E9A-B7EE-C2A067309BD3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests.Shared", "Tests.Shared\Tests.Shared.csproj", "{5015395D-E11A-4D6F-82A9-97B7D78574F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TheMovieDb.BenchTests", "tests\TheMovieDb.BenchTests\TheMovieDb.BenchTests.csproj", "{67CC74B1-380C-4066-90DA-66E4BEF3DCDE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TheMovieDb.BenchTests", "tests\TheMovieDb.BenchTests\TheMovieDb.BenchTests.csproj", "{67CC74B1-380C-4066-90DA-66E4BEF3DCDE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Tests.Shared", "tests\Tests.Shared\Tests.Shared.csproj", "{2AEFBC37-AAA6-4E30-A46B-235C5D97F562}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,14 +47,14 @@ Global
 		{C33F2F3F-102C-4A50-8C54-C4727190E161}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C33F2F3F-102C-4A50-8C54-C4727190E161}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C33F2F3F-102C-4A50-8C54-C4727190E161}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5015395D-E11A-4D6F-82A9-97B7D78574F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5015395D-E11A-4D6F-82A9-97B7D78574F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5015395D-E11A-4D6F-82A9-97B7D78574F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5015395D-E11A-4D6F-82A9-97B7D78574F0}.Release|Any CPU.Build.0 = Release|Any CPU
 		{67CC74B1-380C-4066-90DA-66E4BEF3DCDE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{67CC74B1-380C-4066-90DA-66E4BEF3DCDE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{67CC74B1-380C-4066-90DA-66E4BEF3DCDE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{67CC74B1-380C-4066-90DA-66E4BEF3DCDE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2AEFBC37-AAA6-4E30-A46B-235C5D97F562}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2AEFBC37-AAA6-4E30-A46B-235C5D97F562}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2AEFBC37-AAA6-4E30-A46B-235C5D97F562}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2AEFBC37-AAA6-4E30-A46B-235C5D97F562}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -67,8 +67,8 @@ Global
 		{7B3159A6-ACCA-4AD9-8957-FCEB1EB05743} = {3DE0E801-49F9-42C6-BD24-0B65C6804B45}
 		{C33F2F3F-102C-4A50-8C54-C4727190E161} = {5595A871-FC0E-4D59-B14F-48D8C68F92AC}
 		{B12981C3-9756-4E9A-B7EE-C2A067309BD3} = {3DE0E801-49F9-42C6-BD24-0B65C6804B45}
-		{5015395D-E11A-4D6F-82A9-97B7D78574F0} = {B12981C3-9756-4E9A-B7EE-C2A067309BD3}
 		{67CC74B1-380C-4066-90DA-66E4BEF3DCDE} = {5595A871-FC0E-4D59-B14F-48D8C68F92AC}
+		{2AEFBC37-AAA6-4E30-A46B-235C5D97F562} = {B12981C3-9756-4E9A-B7EE-C2A067309BD3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7BFB7A6A-6C30-4DE0-B795-629F5B329AD0}

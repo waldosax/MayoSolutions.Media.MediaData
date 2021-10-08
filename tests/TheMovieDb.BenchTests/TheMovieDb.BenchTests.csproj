@@ -24,7 +24,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\..\src\MayoSolutions.Media.MediaData.Aggregators.Movies.TheMovieDb\MayoSolutions.Media.MediaData.Aggregators.Movies.TheMovieDb.csproj" />
 		<ProjectReference Include="..\..\src\MayoSolutions.Media.MediaData\MayoSolutions.Media.MediaData.csproj" />
-		<ProjectReference Include="..\..\Tests.Shared\Tests.Shared.csproj" />
+		<ProjectReference Include="..\Tests.Shared\Tests.Shared.csproj" />
 	</ItemGroup>
 
 </Project>
