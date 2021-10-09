@@ -39,6 +39,7 @@ namespace MayoSolutions.Media.MediaData.TV
 
         /// <summary>Unique episode identifier.</summary>
         [JsonIgnore]
-        internal string Key => $"{Series.Id}s{Season?.SeasonNumber:00}e{EpisodeNumber:00}";
+        [EditorBrowsable(EditorBrowsableState.Never)]
+        public string Key => $"{Series.Id}s{Season?.SeasonNumber:00}e{EpisodeNumber:00}";
     }
 }
