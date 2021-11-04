@@ -52,7 +52,7 @@ namespace TheTvDb.BenchTests.v4
         }
 
         [Test]
-        public async Task TestGetEpisodes()
+        public async Task DebugGetEpisodes()
         {
             // Arrange
             var seriesIdentifier = GetSeriesIdentifier(KnownTvShowIds.WhatWeDoInTheShadows);

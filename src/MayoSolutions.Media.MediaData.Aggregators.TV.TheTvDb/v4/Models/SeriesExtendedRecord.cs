@@ -20,6 +20,8 @@ namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v4.Models
         public List<ListBaseRecord> Lists { get; set; }
 
         public List<NetworkBaseRecord> Networks { get; set; }
+        public NetworkBaseRecord LatestNetwork { get; set; }
+        public NetworkBaseRecord OriginalNetwork { get; set; }
 
         public List<RemoteId> RemoteIds { get; set; }
         public List<SeasonBaseRecord> Seasons { get; set; }

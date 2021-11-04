@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Sockets;
 using System.Threading.Tasks;
 using MayoSolutions.Common.Extensions;
 using MayoSolutions.Framework.Web;
@@ -70,7 +71,11 @@ namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v4
         {
             string authToken = await _authenticator.GetAuthTokenAsync(proxy);
 
-            var series = await GetAllEpisodesInfo(seriesIdentifier, authToken, proxy);
+            var series = await GetSeriesInfo(seriesIdentifier, authToken, proxy);
+            var episodes = await GetAllEpisodesInfo(seriesIdentifier, authToken, proxy);
+            series.Seasons.Clear();
+            series.Seasons.AddRange(episodes.Seasons);
+
             return series;
         }
         
@@ -207,6 +212,7 @@ namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v4
 
         private void Adapt(SeriesExtendedRecord input, out Series output)
         {
+            Adapt(input, out List<string> networks);
             output = new Series
             {
                 Id = input.Id?.ToString(),
@@ -216,13 +222,40 @@ namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v4
                 Year = input.FirstAired.ToTvDbDate()?.Year,
                 ReleaseDate = input.FirstAired.ToTvDbDate(),
                 Genres = input.Genres?.Select(x => x.Name)?.ToArray(),
-                Networks = input.Networks?.Select(x => x.Name)?.Concat(
-                          input.Companies?.Where(x => x.CompanyType.Id == CompanyType.Network).Select(x => x.Name)).Distinct(StringComparer.OrdinalIgnoreCase).ToArray(),
+                Networks = networks.ToArray(),
                 Status = input.Status?.Name
             };
+
+
         }
 
+        private void Adapt(SeriesExtendedRecord input, out List<string> networkNames)
+        {
+            networkNames = new List<string>();
+            var networks = new Dictionary<long, string>();
+            if (input.Networks?.Any() == true)
+            {
+                foreach (var kvp in input.Networks
+                    .Select(x => new KeyValuePair<long, string>(x.Id, x.Name)))
+                    if (!networks.ContainsKey(kvp.Key))
+                        networks.Add(kvp.Key, kvp.Value);
+            }
+            if (input.Companies?.Any() == true)
+            {
+                foreach (var kvp in input.Companies
+                    .Where(x => x.CompanyType.Id == CompanyType.Network)
+                    .Select(x => new KeyValuePair<long, string>(x.Id, x.Name)))
+                    if (!networks.ContainsKey(kvp.Key))
+                        networks.Add(kvp.Key, kvp.Value);
+            }
 
+            if (input.OriginalNetwork != null && !networks.ContainsKey(input.OriginalNetwork.Id))
+                networks.Add(input.OriginalNetwork.Id, input.OriginalNetwork.Name);
+            if (input.LatestNetwork != null && !networks.ContainsKey(input.LatestNetwork.Id))
+                networks.Add(input.LatestNetwork.Id, input.LatestNetwork.Name);
+
+            networkNames = networks.Values.Distinct(StringComparer.OrdinalIgnoreCase).ToList();
+        }
 
         private void Adapt(SeriesExtendedRecord theTvDbSeries, out SeriesImageUrls output)
         {
