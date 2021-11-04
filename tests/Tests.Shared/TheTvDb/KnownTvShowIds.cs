@@ -75,6 +75,7 @@
         WandaVision = 362392,
         Watchmen = 360733,
         Westworld = 296762,
+        WhatWeDoInTheShadows = 358211,
         WhiteCollar = 108611,
         WuTangAnAmericanSaga = 354080,
     }

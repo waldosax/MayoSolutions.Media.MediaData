@@ -83,10 +83,24 @@ namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v4
             string seriesJson = await _apiDownloader.GetEpisodesAsync(seriesIdentifier, "official", "eng", authToken, proxy);
             var theTvDbSeries = Deserialize<SeriesExtendedEpisodesRecord>(seriesJson);
 
-            var seasons = theTvDbSeries.Data.Seasons
-                .Where(s => s.Type?.Type == "official")
-                .OrderBy(s => s.Number)
-                .ToList();
+            List<ISeasonNumber> seasons;
+            if (theTvDbSeries.Data.Seasons != null)
+            {
+                seasons = theTvDbSeries.Data.Seasons
+                    .Where(s => s.Type?.Type == "official")
+                    .OrderBy(s => s.Number)
+                    .Cast<ISeasonNumber>()
+                    .ToList();
+            }
+            else
+            {
+                seasons = theTvDbSeries.Data.Episodes
+                    .Select(e => e.SeasonNumber ?? -1)
+                    .Distinct()
+                    .Select(sn => new SeasonNumberShim(sn))
+                    .Cast<ISeasonNumber>()
+                    .ToList();
+            }
 
             // Remove any episodes which have multiple entries for season number and episode number
             var dedupedEpisodes = theTvDbSeries.Data.Episodes
@@ -240,7 +254,7 @@ namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v4
 
         private Series Adapt(
             SeriesExtendedRecord theTvDbSeries,
-            List<SeasonBaseRecord> theTvDbSeasons,
+            List<ISeasonNumber> theTvDbSeasons,
             Dictionary<long, List<EpisodeBaseRecord>> theTvDbEpisodes,
             Dictionary<long, Translation> overviews
             )

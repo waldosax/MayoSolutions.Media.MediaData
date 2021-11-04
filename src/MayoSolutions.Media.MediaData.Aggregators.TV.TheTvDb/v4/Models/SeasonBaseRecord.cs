@@ -4,7 +4,7 @@ using System.Diagnostics;
 namespace MayoSolutions.Media.MediaData.Aggregators.TV.TheTvDb.v4.Models
 {
     [DebuggerDisplay("Season {Number} ({Type.Name,nq})")]
-    public class SeasonBaseRecord
+    public class SeasonBaseRecord : ISeasonNumber
     {
         public string Abbreviation { get; set; }
         public string Country { get; set; }
