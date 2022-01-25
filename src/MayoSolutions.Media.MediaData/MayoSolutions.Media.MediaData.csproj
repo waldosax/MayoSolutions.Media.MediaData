@@ -8,13 +8,13 @@
 		<Authors>Rob Mayo</Authors>
 		<RepositoryType>Git</RepositoryType>
 		<Platforms>AnyCPU</Platforms>
-		<Version>0.0.6.7</Version>
+		<Version>0.0.6.8</Version>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="MayoSolutions.Common" Version="0.0.18" />
-		<PackageReference Include="MayoSolutions.Framework" Version="0.0.9.3" />
-		<PackageReference Include="MayoSolutions.Framework.Web.HttpDownloader" Version="0.0.9" />
+		<PackageReference Include="MayoSolutions.Common" Version="0.1.0" />
+		<PackageReference Include="MayoSolutions.Framework" Version="0.0.9.4" />
+		<PackageReference Include="MayoSolutions.Framework.Web.HttpDownloader" Version="0.0.10" />
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 	</ItemGroup>
 
